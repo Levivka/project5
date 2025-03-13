@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("si", $status, $appeal_id);
 
     if ($stmt->execute()) {
-        echo "<div class='success'>Статус обновлен!</div>";
+        $success = "Статус обновлен!";
     } else {
-        echo "<div class='error'>Ошибка при обновлении статуса.</div>";
+        $error = "Ошибка при обновлении статуса.";
     }
 }
 
@@ -47,6 +47,15 @@ $result = $conn->query($sql);
             text-align: center;
             color: #333;
             font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         table {
             width: 100%;
@@ -56,6 +65,9 @@ $result = $conn->query($sql);
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.5s forwards;
         }
         th, td {
             padding: 12px;
@@ -81,10 +93,11 @@ $result = $conn->query($sql);
             text-decoration: none;
             border-radius: 8px;
             font-size: 16px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
         .logout-button:hover, .admin-button:hover {
             background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
         }
         .success {
             color: #28a745;
@@ -102,6 +115,12 @@ $result = $conn->query($sql);
     <h1>Личный кабинет администратора</h1>
     <a href="dashboard.php" class="admin-button">Назад в личный кабинет</a>
     <a href="logout.php" class="logout-button">Выйти</a>
+    <?php if (isset($success)): ?>
+        <div class="success"><?= $success ?></div>
+    <?php endif; ?>
+    <?php if (isset($error)): ?>
+        <div class="error"><?= $error ?></div>
+    <?php endif; ?>
     <table>
         <tr>
             <th>Дата</th>

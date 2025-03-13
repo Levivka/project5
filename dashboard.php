@@ -35,6 +35,15 @@ $result = $stmt->get_result();
             text-align: center;
             color: #333;
             font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         table {
             width: 100%;
@@ -44,6 +53,9 @@ $result = $stmt->get_result();
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease 0.5s forwards;
         }
         th, td {
             padding: 12px;
@@ -69,10 +81,11 @@ $result = $stmt->get_result();
             text-decoration: none;
             border-radius: 8px;
             font-size: 16px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
         .create-appeal-button:hover, .logout-button:hover, .admin-button:hover {
             background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
         }
     </style>
 </head>

@@ -57,6 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             width: 100%;
             max-width: 400px;
             text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards;
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         .login-container h2 {
             margin-bottom: 20px;
@@ -70,6 +79,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        .login-container input:focus {
+            border-color: #6a11cb;
         }
         .login-container button {
             width: 100%;
@@ -80,10 +93,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             border-radius: 8px;
             font-size: 16px;
             cursor: pointer;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, transform 0.3s ease;
         }
         .login-container button:hover {
             background: linear-gradient(135deg, #2575fc, #6a11cb);
+            transform: translateY(-3px);
         }
         .login-container a {
             display: block;
@@ -91,9 +105,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: #2575fc;
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s ease;
         }
         .login-container a:hover {
-            text-decoration: underline;
+            color: #1a5bbf;
         }
         .error {
             color: #ff0000;
